@@ -1,0 +1,26 @@
+<h1>New Book</h1>
+<% if flash.now[:error] %>
+  <% flash.now[:error].each do |error_msg| %>
+    <li><%= error_msg %></li>
+  <% end %><br>
+<% end %>
+<%= form_for Book.new do |f| %>
+<%= f.label :title %>
+<%= f.text_field :title %>
+<br>
+<br>
+<%= f.label :pages %>
+<%= f.number_field :pages %>
+<br>
+<br>
+Authors
+<ul>
+  <%= f.collection_check_boxes :author_ids, Author.all, :id, :name do |k| %>
+  <li>
+    <%= k.label %>
+    <%= k.check_box %>
+  </li>
+  <% end %>
+</ul>
+<%= f.submit %>
+<% end %>

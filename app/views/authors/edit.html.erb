@@ -1,0 +1,18 @@
+<h1>Edit <%= @author.name %></h1>
+<% if flash.now[:error] %>
+  <% flash.now[:error].each do |error_msg| %>
+    <li><%= error_msg %></li>
+  <% end %><br>
+<% end %>
+<%# make sure to connect to controller in create %>
+<%= form_for @author do |f| %>
+<%= f.label :name %>
+<%= f.text_field :name %>
+<br>
+<br>
+<%= f.label :birth_year %>
+<%= f.number_field :birth_year %>
+<br>
+<br>
+<%= f.submit %>
+<% end %>
